@@ -1,0 +1,82 @@
+{% extends 'app/plantilla.html' %}
+{% block content %}
+{%load static%}
+
+<div class="container bootstrap snipets">
+  <h1 class="text-center text-muted" style="color: white;">Catalogo Manga</h1>
+  <div class="row flow-offset-1">
+    <div class="col-xs-6 col-md-4">
+      <div class="product tumbnail thumbnail-3"><a href="#"><img src="{%static 'app/img/manga_cat/SHONEN.png'%}" alt=""></a>
+        <div class="caption">
+          <h6><a href="{% url '1Shonen' %}">Shonen</a></h6><span class="price">
+           
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <div class="product tumbnail thumbnail-3"><a href="#"><img src="{%static 'app/img/manga_cat/SHOUJO.png'%}" alt=""></a>
+        <div class="caption">
+          <h6><a href="{% url '1Shojo' %}">Shojo</a></h6><span class="price">
+            
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <div class="product tumbnail thumbnail-3"><a href="#"><img src="{%static 'app/img/manga_cat/ECCHI.png'%}" alt=""></a>
+        <div class="caption">
+          <h6><a href="{% url '1Ecchi' %}">Ecchi</a></h6><span class="price"></span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <div class="product tumbnail thumbnail-3"><a href="#"><img src="{%static 'app/img/manga_cat/SHONEN_AI.png'%}" alt=""></a>
+        <div class="caption">
+          <h6><a href="{% url '1Shonen_ai' %}">Shonen ai</a></h6><span class="price">
+            
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <div class="product tumbnail thumbnail-3"><a href="#"><img src="{%static 'app/img/manga_cat/SHOJO_AI.png'%}" alt=""></a>
+        <div class="caption">
+          <h6><a href="{% url '1Shojo_ai' %}">Shojo ai</a></h6><span class="price">
+            
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <div class="product tumbnail thumbnail-3"><a href="#"><img src="{%static 'app/img/manga_cat/SEINEN.png'%}" alt=""></a>
+        <div class="caption">
+          <h6><a href="{% url '1Seinen' %}">Seinen</a></h6><span class="price">
+            
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <div class="product tumbnail thumbnail-3"><a href="#"><img src="{%static 'app/img/manga_cat/JOSEI.png'%}" alt=""></a>
+        <div class="caption">
+          <h6><a href="{% url '1Josei' %}">Josei</a></h6><span class="price"></span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <div class="product tumbnail thumbnail-3"><a href="#"><img src="{%static 'app/img/manga_cat/YAOI.png'%}" alt=""></a>
+        <div class="caption">
+          <h6><a href="{% url '1Yaoi' %}">Yaoi</a></h6><span class="price">
+            
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <div class="product tumbnail thumbnail-3"><a href="#"><img src="{%static 'app/img/manga_cat/YURI.png'%}" alt=""></a>
+        <div class="caption">
+          <h6><a href="{% url '1Yuri' %}">Yuri</a></h6><span class="price">
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

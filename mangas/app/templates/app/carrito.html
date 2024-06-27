@@ -1,0 +1,107 @@
+{% extends 'app/plantilla.html' %}
+{% block content %}
+{%load static%}
+
+<div id="carrito-container">
+    <h2>Carrito de Compras</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody id="carrito">
+            <!-- Aquí se agregan los productos -->
+        </tbody>
+    </table>
+
+    <br>
+    <label for="producto">Producto:</label>
+    <select id="producto">
+        <option value="Manga Shonen">Manga Shonen</option>
+        <option value="Manga Shojo">Manga Shojo</option>
+        <option value="Manga Ecchi">Manga Ecchi</option>
+        <option value="Manga Shonen ai">Manga Shonen ai</option>
+        <option value="Manga Shojo ai">Manga Shojo ai</option>
+        <option value="Manga Seinen">Manga Seinen</option>
+        <option value="Manga Josei">Manga Josei</option>
+        <option value="Manga Yaoi">Manga Yaoi</option>
+        <option value="Manga Yuri">Manga Yuri</option>
+    </select>
+    <label for="precio">Precio:</label>
+    <span id="precio"></span>
+    <button onclick="agregarProducto()">Agregar Producto</button>
+    <br>
+    <br>
+    <p>Total de la compra: <span id="total"></span></p>
+    <button onclick="confirmarCompra()">Confirmar Compra</button>
+</div>
+
+
+
+<script>
+    var preciosProductos = {
+        "Manga Shonen": 7990,
+        "Manga Shojo": 7990,
+        "Manga Ecchi": 10990,
+        "Manga Shonen ai": 9990,
+        "Manga Shojo ai": 9990,
+        "Manga Seinen": 12990,
+        "Manga Josei": 9990,
+        "Manga Yaoi": 21990,
+        "Manga Yuri": 20990
+    };
+
+    document.getElementById("producto").addEventListener("change", function () {
+        var productoSeleccionado = this.value;
+        var precioProducto = preciosProductos[productoSeleccionado];
+        document.getElementById("precio").textContent = "$" + precioProducto.toFixed(2);
+    });
+
+    function agregarProducto() {
+        var producto = document.getElementById("producto").value;
+        var precio = preciosProductos[producto];
+
+        var fila = "<tr><td>" + producto + "</td><td>$" + precio.toFixed(2) + "</td><td><button onclick='eliminarProducto(this)'>Eliminar</button></td></tr>";
+
+        document.getElementById("carrito").innerHTML += fila;
+
+    
+        calcularTotal();
+    }
+
+    function eliminarProducto(elemento) {
+        var fila = elemento.parentNode.parentNode;
+        fila.parentNode.removeChild(fila);
+
+        
+        calcularTotal();
+    }
+
+    function calcularTotal() {
+        var total = 0;
+        var filas = document.querySelectorAll("#carrito tbody tr");
+        filas.forEach(function (fila) {
+            var precioTexto = fila.querySelector("td:nth-child(2)").textContent;
+            var precio = parseFloat(precioTexto.substring(1));
+            total += precio;
+        });
+
+        document.getElementById("total").textContent = "$" + total.toFixed(2);
+    }
+
+    function confirmarCompra() {
+        
+        window.location.href = "confirmarcompra.html";
+    }
+</script>
+
+</body>
+
+</html>
+
+
+{% endblock %}

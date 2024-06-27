@@ -1,0 +1,15 @@
+{% extends 'app/plantilla.html' %}
+{% block content %}
+{%load static%}
+    
+<div class="perros">
+    <h1>Buscar Razas de Perros</h1>
+    <input type="text" id="searchInput" placeholder="Ingrese una raza de perro">
+    <button onclick="searchDogBreeds()">Buscar</button>
+    <div id="results"></div>
+</div>
+
+
+<script src="/app/static/js/script.js"></script>
+
+{% endblock %}

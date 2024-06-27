@@ -1,0 +1,18 @@
+<!-- manga_confirm_delete.html -->
+{% extends 'app/plantilla.html' %}
+{%load static%}
+{% block content %}
+
+
+<h1>Confirmar eliminación de Manga</h1>
+
+<p>¿Estás seguro que deseas eliminar "{{ manga.nombre }}"?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Eliminar</button>
+</form>
+
+<a href="{% url 'manga_list' %}">Cancelar</a>
+
+{% endblock %}

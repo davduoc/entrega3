@@ -1,0 +1,52 @@
+{% extends 'app/plantilla.html' %}
+{% block content %}
+{%load static%}
+<div class="container">
+    <div class="ponte-en-contacto">
+        <label for="form-group" class="form-label">Ingresa tus datos para contactarte</label>
+    </div>
+
+    <form action="{}" method="post"> 
+        {% csrf_token %}
+        <div class="formulario">
+            <div class="form-group">
+                <label for="nombres" class="form-label">Nombres</label>
+                <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Ej: Pedro Andres">
+            </div>
+
+            <div class="form-group">
+                <label for="apellidos" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Ej: Gonzalez Tapia">
+            </div>
+
+            <div class="form-group">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Ej: Santiago, San miguel, Calle 123">
+            </div>
+
+            <div class="form-group">
+                <label for="lista-regiones" class="form-label">Región</label>
+                <select id="lista-regiones" class="form-control" name="region">
+                    <option value="">Selecciona tu región</option>
+                    <!-- Aquí podrías agregar opciones adicionales con etiquetas <option> -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Correo</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" name="correo" aria-describedby="emailHelp" placeholder="Ej: gatos@gmail.com">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Verificar</button>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- Este enlace está fuera del formulario, pero si deseas mantenerlo, puedes hacerlo de esta manera -->
+    <div class="enviarsolicitud">
+        <a href="{% url 'contacto2' %}" class="boton">Enviar solicitud</a>
+    </div>
+</div>
+{% endblock %}

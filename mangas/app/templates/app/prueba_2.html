@@ -1,0 +1,111 @@
+<!-- archivo lista_deseos.html (o cualquier otro nombre que prefieras) -->
+{% extends 'app/plantilla.html' %}
+{%load static%}
+{% block title %}Lista de deseos{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mt-4">Lista de deseos</h1>
+
+    <form id="crudForm" class="form-inline mt-4">
+        <input type="hidden" id="index" value="">
+        <div class="form-group mb-2">
+            <input type="text" id="nombre" class="form-control mr-2" placeholder="Nombre" required>
+        </div>
+        <div class="form-group mb-2">
+            <input type="text" id="tomo" class="form-control mr-2" placeholder="Tomo" required>
+        </div>
+        <div class="form-group mb-2">
+            <input type="text" id="editorial" class="form-control mr-2" placeholder="Editorial">
+        </div>
+        <div class="form-group mb-2">
+            <input type="text" id="precio" class="form-control mr-2" placeholder="Precio">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Agregar</button>
+    </form>
+
+    <table class="table table-bordered mt-4">
+        <thead class="thead-light">
+            <tr>
+                <th>Nombre</th>
+                <th>Tomo</th>
+                <th>Editorial</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="crudTableBody">
+            <!-- Las filas de datos se insertarán aquí -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.getElementById('crudForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const index = document.getElementById('index').value;
+        const nombre = document.getElementById('nombre').value;
+        const tomo = document.getElementById('tomo').value;
+        const editorial = document.getElementById('editorial').value;
+        const precio = document.getElementById('precio').value;
+
+        if (index === '') {
+            agregarFila(nombre, tomo, editorial, precio);
+        } else {
+            actualizarFila(index, nombre, tomo, editorial, precio);
+        }
+
+        this.reset();
+        document.getElementById('index').value = '';
+    });
+
+    function agregarFila(nombre, tomo, editorial, precio) {
+        const tableBody = document.getElementById('crudTableBody');
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${nombre}</td>
+            <td>${tomo}</td>
+            <td>${editorial}</td>
+            <td>${precio}</td>
+            <td>
+                <button class="btn btn-sm btn-warning" onclick="editarFila(this)">Editar</button>
+                <button class="btn btn-sm btn-danger" onclick="eliminarFila(this)">Eliminar</button>
+            </td>
+        `;
+
+        tableBody.appendChild(row);
+    }
+
+    function actualizarFila(index, nombre, tomo, editorial, precio) {
+        const tableBody = document.getElementById('crudTableBody');
+        const row = tableBody.rows[index];
+
+        row.cells[0].innerText = nombre;
+        row.cells[1].innerText = tomo;
+        row.cells[2].innerText = editorial;
+        row.cells[3].innerText = precio;
+        row.cells[4].innerHTML = `
+            <button class="btn btn-sm btn-warning" onclick="editarFila(this)">Editar</button>
+            <button class="btn btn-sm btn-danger" onclick="eliminarFila(this)">Eliminar</button>
+        `;
+    }
+
+    function editarFila(button) {
+        const row = button.parentElement.parentElement;
+        const index = Array.from(row.parentElement.children).indexOf(row);
+
+        document.getElementById('index').value = index;
+        document.getElementById('nombre').value = row.cells[0].innerText;
+        document.getElementById('tomo').value = row.cells[1].innerText;
+        document.getElementById('editorial').value = row.cells[2].innerText;
+        document.getElementById('precio').value = row.cells[3].innerText;
+    }
+
+    function eliminarFila(button) {
+        const row = button.parentElement.parentElement;
+        row.remove();
+    }
+</script>
+{% endblock %}
